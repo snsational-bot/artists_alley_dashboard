@@ -14,7 +14,10 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFFFFF2E8), Color(0xFFFFD6B8)],
+            colors: [
+              CustomColors.loginGradientStart,
+              CustomColors.loginGradientEnd,
+            ],
           ),
         ),
         child: SafeArea(
@@ -27,7 +30,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                   () => Material(
                     elevation: 10,
                     borderRadius: BorderRadius.circular(24),
-                    color: Colors.white,
+                    color: CustomColors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(28),
                       child: Form(
@@ -48,7 +51,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                             Text(
                               'Sign in to continue to Artists Alley.',
                               style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(color: const Color(0xFF6C5F52)),
+                                  ?.copyWith(color: CustomColors.mutedText),
                             ),
                             const SizedBox(height: 24),
                             TextFormField(
@@ -59,7 +62,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                 labelText: 'Email',
                                 prefixIcon: Icon(Icons.alternate_email),
                                 filled: true,
-                                fillColor: Color(0xFFF8F4F1),
+                                fillColor: CustomColors.inputFill,
                                 border: OutlineInputBorder(),
                               ),
                               validator: (value) {
@@ -91,7 +94,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                   ),
                                 ),
                                 filled: true,
-                                fillColor: const Color(0xFFF8F4F1),
+                                fillColor: CustomColors.inputFill,
                                 border: const OutlineInputBorder(),
                               ),
                               validator: (value) {
@@ -131,7 +134,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                     : _submitLogin,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: CustomColors.primary,
-                                  foregroundColor: Colors.white,
+                                  foregroundColor: CustomColors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
@@ -144,7 +147,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                           strokeWidth: 2,
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                                Colors.white,
+                                                CustomColors.white,
                                               ),
                                         ),
                                       )
@@ -156,7 +159,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                               'Need access? Contact your administrator.',
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: const Color(0xFF6C5F52)),
+                                  ?.copyWith(color: CustomColors.mutedText),
                             ),
                           ],
                         ),
