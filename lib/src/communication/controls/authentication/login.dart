@@ -1,4 +1,9 @@
+import 'dart:developer';
+import 'package:artists_alley_dashboard/src/config/constants/constants.dart';
 import 'package:artists_alley_dashboard/src/presentation/presentation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginViewControl implements LoginViewController {
   final LoginViewPresenter _presenter;
@@ -18,6 +23,24 @@ class LoginViewControl implements LoginViewController {
   @override
   void goToRecoverPassword() {
     // Implement navigation to recover password view
+  }
+
+  @override
+  Future<void> toggleLocale(BuildContext context) async {
+    final delegate = LocalizedApp.of(context).delegate;
+    final nextLang = isPortuguese(context) ? 'en' : 'pt';
+    await delegate.changeLocale(localeFromString(nextLang));
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(LocalStorageKeys.lang, nextLang);
+    _presenter.locale = nextLang;
+    log(name: "LoginViewControl", "Locale changed to: $nextLang");
+  }
+
+  @override
+  bool isPortuguese(BuildContext context) {
+    final currentLocale = LocalizedApp.of(context).delegate.currentLocale;
+    log(name: "LoginViewControl", "Current locale: $currentLocale");
+    return currentLocale.languageCode == 'pt';
   }
 
   @override

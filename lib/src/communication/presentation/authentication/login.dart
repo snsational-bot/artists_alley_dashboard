@@ -37,6 +37,12 @@ class LoginViewPresentation extends LoginViewPresenter
   @override
   set isLoading(bool value) => _isLoading.value = value;
 
+  final RxString _locale = 'en'.obs;
+  @override
+  String get locale => _locale.value;
+  @override
+  set locale(String value) => _locale.value = value;
+
   Future<void> _getSavedValues() async {
     try {
       _isLoading.value = true;
@@ -48,6 +54,8 @@ class LoginViewPresentation extends LoginViewPresenter
         final String email = prefs.getString(LocalStorageKeys.email) ?? '';
         emailController.text = email;
       }
+      final String locale = prefs.getString(LocalStorageKeys.lang) ?? 'en';
+      _locale.value = locale;
       _isLoading.value = false;
     } catch (e) {
       log(

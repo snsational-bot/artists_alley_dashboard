@@ -14,4 +14,7 @@ abstract class LoginViewPresenter extends GetxController {
 
   bool get isLoading;
   set isLoading(bool value);
+
+  String get locale;
+  set locale(String value);
 }

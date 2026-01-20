@@ -1,6 +1,7 @@
 import 'package:artists_alley_dashboard/src/config/constants/constants.dart';
 import 'package:artists_alley_dashboard/src/presentation/authentication/login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
@@ -39,8 +40,16 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () =>
+                                    controller.toggleLocale(context),
+                                child: Text(presenter.locale.toUpperCase()),
+                              ),
+                            ),
                             Text(
-                              'Welcome back',
+                              translate("login.welcome_back"),
                               style: Theme.of(context).textTheme.headlineMedium
                                   ?.copyWith(
                                     fontWeight: FontWeight.w700,
@@ -49,7 +58,7 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              'Sign in to continue to Artists Alley.',
+                              translate('login.sign_in_to_continue'),
                               style: Theme.of(context).textTheme.bodyMedium
                                   ?.copyWith(color: CustomColors.mutedText),
                             ),
@@ -58,8 +67,8 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                               controller: presenter.emailController,
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                labelText: 'Email',
+                              decoration: InputDecoration(
+                                labelText: translate('login.email_field.label'),
                                 prefixIcon: Icon(Icons.alternate_email),
                                 filled: true,
                                 fillColor: CustomColors.inputFill,
@@ -68,10 +77,14 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                               validator: (value) {
                                 final trimmed = value?.trim() ?? '';
                                 if (trimmed.isEmpty) {
-                                  return 'Email is required';
+                                  return translate(
+                                    'login.email_field.error_empty',
+                                  );
                                 }
                                 if (!trimmed.contains('@')) {
-                                  return 'Enter a valid email';
+                                  return translate(
+                                    'login.email_field.error_invalid',
+                                  );
                                 }
                                 return null;
                               },
@@ -82,7 +95,9 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                               obscureText: !presenter.isPasswordVisible,
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: translate(
+                                  'login.password_field.label',
+                                ),
                                 prefixIcon: const Icon(Icons.lock_outline),
                                 suffixIcon: IconButton(
                                   onPressed:
@@ -100,10 +115,14 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                               validator: (value) {
                                 final trimmed = value ?? '';
                                 if (trimmed.isEmpty) {
-                                  return 'Password is required';
+                                  return translate(
+                                    'login.password_field.error_empty',
+                                  );
                                 }
                                 if (trimmed.length < 6) {
-                                  return 'Password must be at least 6 characters';
+                                  return translate(
+                                    'login.password_field.error_too_short',
+                                  );
                                 }
                                 return null;
                               },
@@ -117,11 +136,13 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                   onChanged: controller.onCheckRememberMe,
                                   activeColor: CustomColors.primary,
                                 ),
-                                const Text('Remember me'),
+                                Text(translate('login.remember_me')),
                                 const Spacer(),
                                 TextButton(
                                   onPressed: controller.goToRecoverPassword,
-                                  child: const Text('Forgot password?'),
+                                  child: Text(
+                                    translate('login.forgot_password'),
+                                  ),
                                 ),
                               ],
                             ),
@@ -151,12 +172,12 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                               ),
                                         ),
                                       )
-                                    : const Text('Sign in'),
+                                    : Text(translate('login.sign_in_button')),
                               ),
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              'Need access? Contact your administrator.',
+                              translate('login.no_account'),
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodySmall
                                   ?.copyWith(color: CustomColors.mutedText),

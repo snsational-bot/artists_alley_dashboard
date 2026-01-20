@@ -17,6 +17,17 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
+  String _normalizeLocaleTag(String tag) {
+    final normalized = tag.toLowerCase();
+    if (normalized == 'en_us' || normalized == 'en-us') {
+      return 'en';
+    }
+    if (normalized == 'pt_pt' || normalized == 'pt-pt') {
+      return 'pt';
+    }
+    return normalized;
+  }
+
   Future<void> getLang() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -33,15 +44,16 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       return;
     }
 
-    final lang = prefs.getString(LocalStorageKeys.lang);
+    final storedLang = prefs.getString(LocalStorageKeys.lang);
+    final lang = storedLang == null ? null : _normalizeLocaleTag(storedLang);
 
     if (lang != null) {
       // Change locale first
       await localizedApp.delegate.changeLocale(localeFromString(lang));
       log(name: 'App getLang()', ' Language found, set to $lang!');
     } else {
-      await prefs.setString(LocalStorageKeys.lang, 'en_US');
-      log(name: 'App getLang()', ' Language not found, set to en_US!');
+      await prefs.setString(LocalStorageKeys.lang, 'en');
+      log(name: 'App getLang()', ' Language not found, set to en!');
     }
     log(
       name: 'App getLang()',
@@ -88,12 +100,12 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       ],
       supportedLocales: localizationDelegate.supportedLocales,
       themeMode: ThemeMode.dark,
-      locale: const Locale('en_US'),
+      locale: localizationDelegate.currentLocale,
       title: "Artists Alley Dashboard",
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fade,
       initialBinding: CustomBindings(),
-      fallbackLocale: const Locale('pt_pt'),
+      fallbackLocale: const Locale('pt'),
       getPages: Pages.pages,
       theme: ThemeData(
         bottomAppBarTheme: const BottomAppBarThemeData(

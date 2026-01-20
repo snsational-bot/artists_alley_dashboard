@@ -1,0 +1,20 @@
+{
+	"login" : {
+		"welcome_back" : "Bem-vindo de volta",
+		"sign_in_to_continue" : "Inicia sessão para continuares na Artists Alley.",
+		"email_field" : {
+			"label" : "E-mail",
+			"error_empty" : "O e-mail é obrigatório",
+			"error_invalid" : "Introduz um e-mail válido"
+		},
+		"password_field" : {
+			"label" : "Palavra-passe",
+			"error_empty" : "A palavra-passe é obrigatória",
+			"error_too_short" : "A palavra-passe deve ter pelo menos 6 caracteres"
+		},
+		"forgot_password" : "Esqueceste-te da palavra-passe?",
+		"remember_me" : "Lembrar-me",
+		"sign_in_button" : "Iniciar sessão",
+		"no_account" : "Precisas de acesso? Contacta um administrador."
+	}
+}

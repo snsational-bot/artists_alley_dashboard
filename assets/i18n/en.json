@@ -1,3 +1,20 @@
 {
-	"test" : "This is a test string"
+	"login" : {
+		"welcome_back" : "Welcome Back",
+		"sign_in_to_continue" : "Sign in to continue to Artists Alley.",
+		"email_field" : {
+			"label" : "Email",
+			"error_empty" : "Email is required",
+			"error_invalid" : "Enter a valid email"
+		},
+		"password_field" : {
+			"label" : "Password",
+			"error_empty" : "Password is required",
+			"error_too_short" : "Password must be at least 6 characters"
+		},
+		"forgot_password" : "Forgot Password?",
+		"remember_me" : "Remember me",
+		"sign_in_button" : "Sign In",
+		"no_account" : "Need access? Contact your administrator."
+	}
 }
