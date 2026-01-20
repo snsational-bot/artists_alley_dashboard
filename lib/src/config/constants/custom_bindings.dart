@@ -15,5 +15,15 @@ class CustomBindings extends Bindings {
       fenix: true,
     );
     Get.lazyPut<LoginViewPresenter>(() => LoginViewPresentation(), fenix: true);
+
+    // Forgot Password
+    Get.lazyPut<ForgotPasswordViewController>(
+      () => ForgotPasswordViewControl(Get.find<ForgotPasswordViewPresenter>()),
+      fenix: true,
+    );
+    Get.lazyPut<ForgotPasswordViewPresenter>(
+      () => ForgotPasswordViewPresentation(),
+      fenix: true,
+    );
   }
 }

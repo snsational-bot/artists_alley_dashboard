@@ -12,5 +12,11 @@ class Pages {
       preventDuplicates: true,
       participatesInRootNavigator: true,
     ),
+    GetPage(
+      name: Routes.forgotPassword,
+      page: () => const ForgotPasswordView(),
+      preventDuplicates: true,
+      participatesInRootNavigator: true,
+    ),
   ];
 }

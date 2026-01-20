@@ -3,6 +3,7 @@ import 'package:artists_alley_dashboard/src/config/constants/constants.dart';
 import 'package:artists_alley_dashboard/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginViewControl implements LoginViewController {
@@ -22,7 +23,8 @@ class LoginViewControl implements LoginViewController {
 
   @override
   void goToRecoverPassword() {
-    // Implement navigation to recover password view
+    log(name: "LoginViewControl", "Navigating to Forgot Password View...");
+    Get.rootDelegate.toNamed(Routes.forgotPassword);
   }
 
   @override

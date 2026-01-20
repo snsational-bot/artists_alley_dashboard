@@ -16,5 +16,17 @@
 		"remember_me" : "Remember me",
 		"sign_in_button" : "Sign In",
 		"no_account" : "Need access? Contact your administrator."
+	},
+	"forgot_password" : {
+		"title" : "Forgot Password",
+		"subtitle" : "Enter your email and we'll send you a reset link.",
+		"email_field" : {
+			"label" : "Email",
+			"error_empty" : "Email is required",
+			"error_invalid" : "Enter a valid email"
+		},
+		"submit_button" : "Send Reset Link",
+		"back_to_login" : "Back to login",
+		"support_text" : "Need help? Contact your administrator."
 	}
 }
