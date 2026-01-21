@@ -211,7 +211,9 @@ class LoginView extends CustomGetView<LoginViewController, LoginViewPresenter> {
                                       ),
                                     ),
                                     const SizedBox(width: 12),
-                                    const Text('Continue with Google'),
+                                    Text(
+                                      translate('login.google_sign_in_button'),
+                                    ),
                                   ],
                                 ),
                               ),

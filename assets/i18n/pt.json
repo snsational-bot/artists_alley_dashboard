@@ -12,13 +12,14 @@
 			"error_empty" : "A palavra-passe é obrigatória",
 			"error_too_short" : "A palavra-passe deve ter pelo menos 6 caracteres"
 		},
+		"google_sign_in_button" : "Continuar com a Google",
 		"forgot_password" : "Esqueceste-te da palavra-passe?",
 		"remember_me" : "Lembrar-me",
 		"sign_in_button" : "Iniciar sessão",
 		"no_account" : "Precisas de acesso? Contacta um administrador."
 	},
 	"forgot_password" : {
-		"title" : "Esqueceste a palavra-passe",
+		"title" : "Recuperar a palavra-passe",
 		"subtitle" : "Introduz o teu e-mail e enviaremos um link de reposição.",
 		"email_field" : {
 			"label" : "E-mail",

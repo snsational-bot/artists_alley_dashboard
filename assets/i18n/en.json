@@ -12,6 +12,7 @@
 			"error_empty" : "Password is required",
 			"error_too_short" : "Password must be at least 6 characters"
 		},
+		"google_sign_in_button" : "Continue with Google",
 		"forgot_password" : "Forgot Password?",
 		"remember_me" : "Remember me",
 		"sign_in_button" : "Sign In",
