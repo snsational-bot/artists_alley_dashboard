@@ -26,23 +26,26 @@ class ForgotPasswordView
           ),
         ),
         child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 460),
-                child: Material(
-                  elevation: 10,
-                  borderRadius: BorderRadius.circular(24),
-                  color: CustomColors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(28),
-                    child: Form(
-                      key: presenter.formKey,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final isWideLayout = constraints.maxWidth >= 900;
+              final content = SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 460),
+                  child: Material(
+                    elevation: 10,
+                    borderRadius: BorderRadius.circular(24),
+                    color: CustomColors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(28),
+                      child: Form(
+                        key: presenter.formKey,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
                           Align(
                             alignment: Alignment.centerLeft,
                             child: TextButton.icon(
@@ -128,13 +131,45 @@ class ForgotPasswordView
                                 .bodySmall
                                 ?.copyWith(color: CustomColors.mutedText),
                           ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
+              );
+
+              if (!isWideLayout) {
+                return Center(child: content);
+              }
+
+              return Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 48,
+                        right: 24,
+                        top: 32,
+                        bottom: 32,
+                      ),
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 560),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: const Placeholder(),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24, right: 64),
+                    child: content,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
