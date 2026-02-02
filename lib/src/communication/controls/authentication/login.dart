@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginViewControl implements LoginViewController {
   final LoginViewPresenter _presenter;
@@ -68,6 +69,15 @@ class LoginViewControl implements LoginViewController {
 
       Get.rootDelegate.toNamed(Routes.dashboard);
       log('Signed in: ${user?.email}');
+      final uid = FirebaseAuth.instance.currentUser!.uid;
+      log('UID: $uid');
+      final docRef = FirebaseFirestore.instance.collection('users').doc(uid);
+
+      final doc = await docRef.get();
+
+      if (!doc.exists) {
+        await docRef.set({'createdAt': FieldValue.serverTimestamp()});
+      }
     } catch (e) {
       log('Google sign-in failed: $e');
     }

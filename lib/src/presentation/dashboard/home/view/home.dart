@@ -43,18 +43,25 @@ class HomeView extends CustomGetView<HomeViewController, HomeViewPresenter> {
                                 children: [
                                   Expanded(child: _DashboardMainColumn()),
                                   const SizedBox(width: 32),
-                                  const SizedBox(
+                                  SizedBox(
                                     width: 320,
-                                    child: _DashboardSideColumn(),
+                                    child: _DashboardSideColumn(
+                                      onPointOfSaleTap:
+                                          controller.onPointOfSaleTap,
+                                    ),
                                   ),
                                 ],
                               )
                             : Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: const [
+                                children: [
+                                  Text("Dashboard"),
                                   _DashboardMainColumn(),
                                   SizedBox(height: 24),
-                                  _DashboardSideColumn(),
+                                  _DashboardSideColumn(
+                                    onPointOfSaleTap:
+                                        controller.onPointOfSaleTap,
+                                  ),
                                 ],
                               ),
                       ),
@@ -165,7 +172,9 @@ class _DashboardMainColumn extends StatelessWidget {
 }
 
 class _DashboardSideColumn extends StatelessWidget {
-  const _DashboardSideColumn();
+  const _DashboardSideColumn({this.onPointOfSaleTap});
+
+  final VoidCallback? onPointOfSaleTap;
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +190,7 @@ class _DashboardSideColumn extends StatelessWidget {
                 _DashboardActionButton(
                   label: 'Open Point of Sale',
                   icon: Icons.point_of_sale_outlined,
+                  onPressed: onPointOfSaleTap,
                 ),
                 const SizedBox(height: 12),
                 _DashboardActionButton(
@@ -442,15 +452,20 @@ class _DashboardListItem extends StatelessWidget {
 }
 
 class _DashboardActionButton extends StatelessWidget {
-  const _DashboardActionButton({required this.label, required this.icon});
+  const _DashboardActionButton({
+    required this.label,
+    required this.icon,
+    this.onPressed,
+  });
 
   final String label;
   final IconData icon;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
-      onPressed: () {},
+      onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: CustomColors.mutedText,
         backgroundColor: CustomColors.white,

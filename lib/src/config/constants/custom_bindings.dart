@@ -38,5 +38,15 @@ class CustomBindings extends Bindings {
     // Dashboard - Home
     Get.lazyPut<HomeViewController>(() => HomeViewControl(), fenix: true);
     Get.lazyPut<HomeViewPresenter>(() => HomeViewPresentation(), fenix: true);
+
+    // Dashboard - Point of Sale
+    Get.lazyPut<PointOfSaleViewController>(
+      () => PointOfSaleViewControl(Get.find<PointOfSaleViewPresenter>()),
+      fenix: true,
+    );
+    Get.lazyPut<PointOfSaleViewPresenter>(
+      () => PointOfSaleViewPresentation(),
+      fenix: true,
+    );
   }
 }

@@ -24,5 +24,11 @@ class Pages {
       preventDuplicates: true,
       participatesInRootNavigator: true,
     ),
+    GetPage(
+      name: Routes.pointOfSale,
+      page: () => const PointOfSaleView(),
+      preventDuplicates: true,
+      participatesInRootNavigator: true,
+    ),
   ];
 }
